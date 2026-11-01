@@ -22,6 +22,16 @@
 		if (keys.length > items.length) keys.length = items.length;
 	});
 
+	// auf/zu je Eintrag merken – Svelte setzt open bei jeder Änderung im Eintrag neu, sonst klappt das Tippen die Karte zu
+	let opened = $state<Record<number, boolean>>({});
+	// svelte-ignore state_referenced_locally
+	const startOpen = items.length <= 3;
+
+	function add() {
+		opened[next] = true; // neue Einträge offen, damit man gleich tippen kann
+		items.push(create!());
+	}
+
 	function move(i: number, d: -1 | 1) {
 		const j = i + d;
 		if (j < 0 || j >= items.length) return;
@@ -37,7 +47,8 @@
 
 <div class="items">
 	{#each items as it, i (keys[i] ?? i)}
-		<details class="entry" animate:flip={{ duration: 260 }} in:fly={{ y: 10, duration: 260 }} open={items.length <= 3}>
+		{@const key = keys[i] ?? i}
+		<details class="entry" animate:flip={{ duration: 260 }} in:fly={{ y: 10, duration: 260 }} bind:open={() => opened[key] ?? startOpen, (o) => (opened[key] = o)}>
 			<summary>
 				<span class="n">{i + 1}</span>
 				<strong>{title(it, i) || 'Ohne Titel'}</strong>
@@ -53,7 +64,7 @@
 		</details>
 	{/each}
 	{#if create && !fixed}
-		<button class="btn ghost sm add" type="button" onclick={() => items.push(create!())}><Plus size={14} /> {addLabel}</button>
+		<button class="btn ghost sm add" type="button" onclick={add}><Plus size={14} /> {addLabel}</button>
 	{/if}
 </div>
 

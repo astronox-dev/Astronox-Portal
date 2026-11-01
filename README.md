@@ -1,6 +1,6 @@
 # Astronox Portal – portal.astronox.dev
 
-Internes Portal von Astronox Development: Webseite bearbeiten, Kunden verwalten, Anfragen und Aufträge abarbeiten und alle Projekte im Blick behalten. Läuft als eigener Container im selben Portainer-Stack wie die Webseite ([Astronox-Development](https://github.com/mstreicher98/Astronox-Development)) und teilt sich mit ihr die Datenbank.
+Internes Portal von Astronox Development: Webseite bearbeiten, Kunden verwalten, Anfragen und Aufträge abarbeiten und alle Projekte im Blick behalten. Läuft als eigener Container im selben Portainer-Stack wie die Webseite ([Astronox-Development](https://github.com/astronox-dev/Astronox-Development)) und teilt sich mit ihr die Datenbank.
 
 ## Was es kann
 
@@ -80,7 +80,7 @@ Umgebungsvariablen des Dienstes `portal`:
 | `PORTAL_JOBS` | – | `aus` schaltet die Hintergrunddienste ab (nur für Tests) |
 | `ANDROID_CERT_SHA256` | – | weitere Fingerabdrücke für die Android-App, z. B. von Google Play (mit Komma) |
 
-Jeder Push auf `main` baut `ghcr.io/mstreicher98/astronox-portal:latest`. Das Paket ist öffentlich, Portainer braucht dafür keinen Registry-Zugang. Sollte GitHub es privat anlegen: github.com/mstreicher98?tab=packages → `astronox-portal` → Package settings → „Change visibility“ → public.
+Jeder Push auf `main` baut `ghcr.io/astronox-dev/astronox-portal:latest`. Das Paket ist öffentlich, Portainer braucht dafür keinen Registry-Zugang. Sollte GitHub es privat anlegen: github.com/astronox-dev?tab=packages → `astronox-portal` → Package settings → „Change visibility“ → public.
 
 ### Hintergrunddienste
 
